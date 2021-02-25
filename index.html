@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <script src="code.js" defer></script>
   <link rel="stylesheet" href="style.css">
@@ -8,7 +9,27 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
 </head>
+
 <body>
-  
+  <!-- <div id="container"> -->
+
+  <div id="landing">
+    
+    <form action="">
+      <label for="rows">rows</label>
+      <input type="number" id="rows" value="0">
+      <label for="columns">columns</label>
+      <input type="number" id="columns" value="0">
+      <!-- <input type="number" id="trees"> -->
+    </form>
+    <button id="start" onclick="start()">start</button>
+  </div>
+
+  <div id="game">
+    <div id="matrix"></div>
+  </div>
+
+  <!-- </div> -->
 </body>
+
 </html>

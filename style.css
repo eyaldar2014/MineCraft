@@ -7,4 +7,31 @@
 
 body{
   background: blue;
+  position: relative;
+  overflow-x: scroll;
+}
+
+
+
+#landing{
+  position: absolute;
+  display: block;
+  z-index: 100;
+  width: 100vw;
+  height: 100vh;
+  background: white;
+}
+
+#game{
+  position: absolute;
+  background: turquoise;
+  width: 100vw;
+  height: 100vh;
+}
+
+#matrix{
+  display: flex ;
+  flex-direction: column;
+  /* width: 200px; */
+  overflow-x: scroll;
 }
