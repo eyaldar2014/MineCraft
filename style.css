@@ -4,14 +4,10 @@
   margin: 0;
 }
 
-
 body{
   background: blue;
   position: relative;
-  overflow-x: scroll;
 }
-
-
 
 #landing{
   position: absolute;
@@ -24,14 +20,22 @@ body{
 
 #game{
   position: absolute;
+  display: flex;
   background: turquoise;
   width: 100vw;
   height: 100vh;
 }
 
+#tools{
+  width: 15vw;
+  background: violet;
+}
+
 #matrix{
   display: flex ;
   flex-direction: column;
-  /* width: 200px; */
+  width: 80vw;
+  height: 100vh;
+  overflow: scroll;
   overflow-x: scroll;
 }

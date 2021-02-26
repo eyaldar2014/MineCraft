@@ -11,17 +11,21 @@ const columns = document.querySelector('#columns')
 function createMatrix(r, c) {
 
   let w = window.innerWidth;
-  w = (80/100 * w)
-  // matrix.style.width = w.toString() + 'px'
-  
-  // console.log(matrix.style.width)
-
+  let h = window.innerHeight;
+  let n
   let size
+  let coulumnWidth
+
   if (w > 600){
-    size = '100px'
+    size = (h/r).toString() + 'px'
+    // size = '100px'
+    n = (c * h / r)
+    coulumnWidth = n.toString() + 'px'
   }
   else{
     size = '60px'
+    n = (c * 60)
+    coulumnWidth = n.toString() + 'px'
   }
   // console.log(size)
 
@@ -30,23 +34,37 @@ function createMatrix(r, c) {
     column.id = rn
     column.style.display = 'flex'
     column.style.flexDirection = 'row'
-    column.style.display = 'inline-block'
+    console.log(coulumnWidth)
+    column.style.width = coulumnWidth
     matrix.appendChild(column)
 
     for (let cn = 0; c > cn; cn++) {
 
       let cell = document.createElement('div')
-      
+      cell.id = cn
       cell.style.width = size
       cell.style.height = size
-      cell.style.background = 'red'
       cell.style.border = '1px solid black'
-      cell.style.display = 'inline-block'
-      
       column.appendChild(cell)
+      if (rn / r > 0.65) {
+        cell.style.background = 'red'
+      }
+      else{
+        cell.style.background = 'blue'
+      }
     }
   }
+
+  let tree
+  let treeStart = Math.floor(0.65*r)
+  treeStart = treeStart.toString()
+  console.log(treeStart)
+  treeStart = document.getElementById('29')
+  // treeStart = document.querySelector(treeStart)
+  console.log(treeStart)
+  treeStart.style.background = 'green'
 }
+
 
 
 
