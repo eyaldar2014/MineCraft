@@ -5,17 +5,19 @@
 }
 
 body{
-  background: blue;
+  background: grey;
   position: relative;
 }
 
 #landing{
+  background: grey;
   position: absolute;
   display: block;
+
+  /* changed to work easily on game */
   z-index: 100;
   width: 100vw;
   height: 100vh;
-  background: white;
 }
 
 #game{
@@ -39,3 +41,43 @@ body{
   overflow: scroll;
   overflow-x: scroll;
 }
+
+/* tool box */
+.toolsTitle{
+  margin-bottom: 10px;
+}
+#toolsAndStorage{
+  padding: 20px;
+}
+#toolsContainer{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 10px
+}
+.toolBox{
+  width: 50px;
+  height: 50px;
+  background: crimson;
+}
+
+/* storage */
+.storageTitle{
+  margin-top: 50px;
+  margin-bottom: 10px;
+}
+#storageContainer{
+  display: flex;
+  flex-direction: column;
+}
+
+.brickContainer{
+  display: flex;
+  align-items: center;
+}
+
+.brickIcon{
+  width: 10px;
+  height: 10px;
+  background: chartreuse;
+}
+

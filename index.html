@@ -14,7 +14,7 @@
   <!-- <div id="container"> -->
 
   <div id="landing">
-    
+
     <form action="">
       <label for="rows">rows</label>
       <input type="number" id="rows" value="0">
@@ -26,7 +26,33 @@
   </div>
 
   <div id="game">
-    <div id="tools"></div>
+    <div id="toolsAndStorage">
+        <h1 class="toolsTitle">Tools</h1>
+        <div id="toolsContainer">
+        <div id="axeBox" class="toolBox"></div>
+        <div id="pickAxeBox" class="toolBox"></div>
+        <div id="shovelBox" class="toolBox"></div>
+      </div>
+
+      <h1 class="storageTitle">Storage</h1>
+      <div id="storageContainer">
+        <div id="woodContainer" class="brickContainer">
+          <div id="woodIcon" class="brickIcon"></div>
+          <h3>&nbsp; / &nbsp;</h3>
+          <div id="woodCounter">0</div>
+        </div>
+        <div id="dirtContainer" class="brickContainer">
+          <div id="dirtIcon" class="brickIcon"></div>
+          <h3>&nbsp; / &nbsp;</h3>
+          <div id="dirtCounter">0</div>
+        </div>
+        <div id="rockContainer" class="brickContainer">
+          <div id="rockIcon" class="brickIcon"></div>
+          <h3>&nbsp; / &nbsp;</h3>
+          <div id="rockCounter">0</div>
+        </div>
+      </div>
+    </div>
     <div id="matrix"></div>
   </div>
 
