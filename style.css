@@ -1,3 +1,35 @@
+.wood{
+  background-color: green;
+  background-image: url('/images/blocks/wood.png') ;
+  background-position: center;
+  background-size: cover;
+}
+
+.bush{
+  background-color: yellow;
+  background-image: url('/images/blocks/tree-leaves.png');
+  background-position: center;
+  background-size: cover;
+}
+
+.rock{
+  background-color: grey;
+  background-image: url('/images/blocks/rock.png');
+  background-position: center;
+  background-size: cover;
+}
+
+.dirt{
+  background-color: brown;
+  background-image: url('/images/blocks/soil.png');
+  background-position: center;
+  background-size: cover;
+}
+
+.sky{
+  background-color: lightblue;
+}
+
 
 *{
   box-sizing: border-box;
@@ -10,6 +42,37 @@ body{
   position: relative;
 }
 
+#axeBox{
+  background: url('images/tools/axe.png') no-repeat center center / cover;
+}
+#pickAxeBox{
+  background: url('images/tools/pickAxe.png') no-repeat center center / cover;
+}
+#shovelBox{
+  background: url('images/tools/shovel.png') no-repeat center center / cover;
+}
+#woodIcon{
+  background:  url('/images/blocks/wood.png') no-repeat center center / cover;
+}
+#rockIcon{
+  background:  url('/images/blocks/rock.png') no-repeat center center / cover;
+}
+#dirtIcon{
+  background:  url('/images/blocks/soil.png') no-repeat center center / cover;
+}
+#bushIcon{
+  background:  url('/images/blocks/tree-leaves.png') no-repeat center center / cover;
+}
+
+.btn{
+  width: 200px;
+  margin-bottom: 10px;
+  height: 40px;
+  font-weight: 600;
+  font-size: 1.2rem;
+  background: orange; 
+}
+
 #landing{
   background: url('images/bg.gif') no-repeat center center /cover;
   position: absolute;
@@ -20,8 +83,6 @@ body{
   z-index: 10;
   width: 100vw;
   height: 100vh;
-  /* cursor: url(images/cursor.png) 4 4, auto; */
-  
 }
 
 #mainTitle{
@@ -44,6 +105,7 @@ body{
   /* justify-content: center; */
   align-items: center;
 }
+
 .input{
   display: flex;
   flex-direction: column;
@@ -63,7 +125,7 @@ body{
 }
 
 .inputColumns{
-  width: 30px;
+  width: 40px;
   height: 100px;
 }
 
@@ -97,19 +159,6 @@ body{
   font-weight: 600;
 }
 
-
-
-.btn{
-  width: 200px;
-  margin-bottom: 10px;
-  height: 40px;
-  font-weight: 600;
-  font-size: 1.2rem;
-  background: orange;
-  
-}
-
-
 #game{
   position: absolute;
   display: flex;
@@ -123,26 +172,6 @@ body{
   width: 15vw;
   background: violet;
 }
-
-#axeBox{
-  background: url('images/tools/axe.png') no-repeat center center / cover;
-}
-#pickAxeBox{
-  background: url('images/tools/pickAxe.png') no-repeat center center / cover;
-}
-#shovelBox{
-  background: url('images/tools/shovel.png') no-repeat center center / cover;
-}
-#woodIcon{
-  background:  url('/images/blocks/wood.png') no-repeat center center / cover;
-}
-#rockIcon{
-  background:  url('/images/blocks/rock.png') no-repeat center center / cover;
-}
-#dirtIcon{
-  background:  url('/images/blocks/soil.png') no-repeat center center / cover;
-}
-
 
 
 #matrix{
@@ -214,3 +243,4 @@ body{
   margin-top: 40px;
   background: turquoise;
 }
+
