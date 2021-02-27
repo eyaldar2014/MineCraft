@@ -8,6 +8,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" media="screen and (min-width: 600px)" href="widescreen.css">
+  <link rel="stylesheet" media="screen and (max-height: 500px)" href="landscape.css">
 
   <title>minecraft</title>
 </head>
@@ -22,9 +23,11 @@
     <button class="btn" onclick="instructionsMenu()">Instructions</button>
     <button class="btn">Credits</button>
     <button class="btn">Exit Game</button>
+
   </div>
 
   <div id="newGame">
+    <div>
     <form action="">
       <div class="input">
         <label for="rows">rows</label>
@@ -37,6 +40,7 @@
       </div>
       <!-- <input type="number" id="trees"> -->
     </form>
+  </div>
     <a href="#"><button id="start" class="btn" onclick="start()">Start</button></a>
     <a href="index.html"><button id='cancelStart' class="btn" onclick="cancel()">Cancel</button></a>
   </div>

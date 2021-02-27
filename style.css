@@ -1,8 +1,3 @@
-@media screen and (min-width: 1000px) {
-  #newGame{
-    width: 800px;
-  }
-}
 
 *{
   box-sizing: border-box;
@@ -25,26 +20,28 @@ body{
   z-index: 10;
   width: 100vw;
   height: 100vh;
+  /* cursor: url(images/cursor.png) 4 4, auto; */
+  
 }
 
 #mainTitle{
   background: url('images/a.png') no-repeat center center /cover;
   width: 42vw;
   height: 7vw;
-  margin-bottom: 30px
+  margin-bottom: 100px
 }
 
 #newGame{
   position: absolute;
   left: calc(50% - 180px);
-  top: 20vh;
+  top: 10vh;
   background: url('/images/newGame.png') no-repeat center center / cover;
   opacity: 0.9;
   width: 360px;
-  height: 70vh;
+  height: 80vh;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  /* justify-content: center; */
   align-items: center;
 }
 .input{
@@ -93,11 +90,6 @@ body{
   font-size: 50px;
   font-weight: 600;
 }
-/* 
-#instructionsTextContainer{
-  margin-top: 1000px;
-  width: 100%;
-} */
 
 #instructions p{
   padding: 10px;
@@ -124,6 +116,7 @@ body{
   background: url('/images/gameBg.png') no-repeat center center / cover;
   width: 100vw;
   height: 100vh;
+  cursor: url('cursor1.png'), auto;
 }
 
 #tools{
@@ -166,9 +159,12 @@ body{
   margin-bottom: 10px;
 }
 #toolsAndStorage{
+  height: 100vh;
   background: url('/images/sidebarBg.png') no-repeat center center / cover;
   padding: 20px;
+  overflow: scroll;
 }
+
 #toolsContainer{
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -214,6 +210,7 @@ body{
 }
 
 .cancelGame{
+  width: 130px;
   margin-top: 40px;
   background: turquoise;
 }

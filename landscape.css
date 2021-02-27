@@ -1,0 +1,16 @@
+/* title */
+
+#newGame{
+  position: absolute;
+  height: 80vh;
+  top: 10vh;
+  overflow: scroll;
+}
+#instructions{
+  height: 80vh;
+  top: 10vh;
+}
+
+#cancelGame{
+  width: 130px;
+}

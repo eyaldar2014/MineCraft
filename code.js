@@ -12,6 +12,10 @@ const columns = document.querySelector('#columns')
 let cells
 let tools = document.querySelectorAll('.toolBox')
 let currentHolder = document.querySelector('#currentIcon')
+let gameSpace = document.querySelector('#game')
+let cursorClass = document.querySelector('.cursor')
+
+
 
 let woodCounter = document.querySelector('#woodCounter')
 let dirtCounter = document.querySelector('#dirtCounter')
@@ -191,10 +195,13 @@ function cell(e) {
 }
 
 function tool(e) {
-  
+
   let tool = e.srcElement
   let toolStyle = getComputedStyle(tool)
   currentHolder.style.background = toolStyle.background
+
+
+  console.log(gameSpace.cursor)
 
   // console.log(tool.id)
   if (tool.id === 'axeBox') {
@@ -229,7 +236,7 @@ function putBack(e) {
   let store = e.srcElement
   let storeStyle = getComputedStyle(store)
   currentHolder.style.background = storeStyle.background
-  
+
   if (store.id === 'woodIcon' && parseInt(woodCounter.innerHTML) > 0) {
     // store.style.border = 'grey 5px solid'
     wood = true
