@@ -1,5 +1,6 @@
 // console.log('a')
-let temp
+let tempColor
+let tempImage
 let currentTool
 
 const matrix = document.querySelector('#matrix')
@@ -62,7 +63,7 @@ function createMatrix(r, c) {
       cell.classList.add(rn)
       cell.style.width = size
       cell.style.height = size
-      cell.style.border = '1px solid black'
+      cell.style.border = '1px solid black' // not sure about it
       row.appendChild(cell)
 
       let startTreeRow = Math.floor(0.65 * r)
@@ -70,19 +71,26 @@ function createMatrix(r, c) {
       let startSecondTree = Math.floor((0.65) * c)
 
       if (rn / r > 0.65) {
-        cell.style.background = 'brown' // dirt
-        cell.classList.add("dirt")
+        cell.style.backgroundColor = 'brown' // dirt
+        cell.style.backgroundImage = 'url(/images/blocks/soil.png)'
+        cell.style.backgroundPosition = 'center'
+        cell.style.backgroundSize = 'cover'
       }
       else {
-        cell.style.background = 'blue' // sky
-        cell.classList.add("sky")
+        cell.style.backgroundColor = 'lightblue' // sky
       }
       // elements : 
       if (startTreeRow === rn && startTree === cn) {
-        cell.style.background = 'green'
+        cell.style.backgroundColor = 'green'
+        cell.style.backgroundImage = 'url(/images/blocks/wood.png)'
+        cell.style.backgroundPosition = 'center'
+        cell.style.backgroundSize = 'cover'
       }
       if (startTreeRow === rn && startSecondTree === cn) {
-        cell.style.background = 'green'
+        cell.style.backgroundColor = 'green'
+        cell.style.backgroundImage = 'url(/images/blocks/wood.png)'
+        cell.style.backgroundPosition = 'center'
+        cell.style.backgroundSize = 'cover'
       }
     }
   }
@@ -121,41 +129,53 @@ storages.forEach(element => {
 function cell(e) {
   let cell = e.srcElement
 
-  if (axe === true && cell.style.background === 'green') {
-    cell.style.background = 'blue'
+  if (axe === true && cell.style.backgroundColor === 'green') {
+    cell.style.backgroundColor = 'lightblue'
+    cell.style.backgroundImage = ''
     let n = parseInt(woodCounter.innerHTML) + 1
     woodCounter.innerHTML = n.toString()
   }
-  else if (pickAxe === true && cell.style.background === 'grey') {
-    cell.style.background = 'blue'
+  else if (pickAxe === true && cell.style.backgroundColor === 'grey') {
+    cell.style.backgroundColor = 'lightblue'
+    cell.style.backgroundImage = ''
     let n = parseInt(rockCounter.innerHTML) + 1
     rockCounter.innerHTML = n.toString()
   }
-  else if (shovel === true && cell.style.background === 'brown') {
+  else if (shovel === true && cell.style.backgroundColor === 'brown') {
     checkDirt(cell)
     if (digPermission === true) {
-      cell.style.background = 'blue'
+      cell.style.backgroundColor = 'lightblue'
+      cell.style.backgroundImage = ''
       let n = parseInt(dirtCounter.innerHTML) + 1
       dirtCounter.innerHTML = n.toString()
     }
     digPermission = false
   }
-  else if (wood === true && cell.style.background === 'blue' && parseInt(woodCounter.innerHTML)) {
-    cell.style.background = 'green'
+  else if (wood === true && cell.style.backgroundColor === 'lightblue' && parseInt(woodCounter.innerHTML)) {
+    cell.style.backgroundColor = 'green'
+    cell.style.backgroundImage = 'url(/images/blocks/wood.png)'
+    cell.style.backgroundPosition = 'center'
+    cell.style.backgroundSize = 'cover'
     let n = parseInt(woodCounter.innerHTML) - 1
     woodCounter.innerHTML = n.toString()
   }
-  else if (rock === true && cell.style.background === 'blue' && parseInt(rockCounter.innerHTML)) {
-    cell.style.background = 'grey'
+  else if (rock === true && cell.style.backgroundColor === 'lightblue' && parseInt(rockCounter.innerHTML)) {
+    cell.style.backgroundColor = 'grey'
+    cell.style.backgroundImage = 'url(/images/blocks/rock.png)'
+    cell.style.backgroundPosition = 'center'
+    cell.style.backgroundSize = 'cover'
     let n = parseInt(rockCounter.innerHTML) - 1
     rockCounter.innerHTML = n.toString()
   }
-  else if (dirt === true && cell.style.background === 'blue' && parseInt(dirtCounter.innerHTML)) {
-    cell.style.background = 'brown'
+  else if (dirt === true && cell.style.backgroundColor === 'lightblue' && parseInt(dirtCounter.innerHTML)) {
+    cell.style.backgroundColor = 'brown'
+    cell.style.backgroundImage = 'url(/images/blocks/soil.png)'
+    cell.style.backgroundPosition = 'center'
+    cell.style.backgroundSize = 'cover'
     let n = parseInt(dirtCounter.innerHTML) - 1
     dirtCounter.innerHTML = n.toString()
   }
-  if (cell.style.background !== 'blue'){
+  if (cell.style.backgroundColor !== 'lightblue'){
   checkFloating(cell)
   }
 }
@@ -236,7 +256,7 @@ function checkDirt(cell) {
     }
   })
 
-  if (upperCell.style.background === 'blue'){
+  if (upperCell.style.backgroundColor === 'lightblue'){
     digPermission = true
   }
 }
@@ -254,11 +274,15 @@ function checkFloating(cell) {
     }
   })
 
-  if (underCell.style.background === 'blue'){
-    temp = cell.style.background
-    // console.log(temp)
-    underCell.style.background = temp
-    cell.style.background = 'blue'
+  if (underCell.style.backgroundColor === 'lightblue'){
+    tempColor = cell.style.backgroundColor
+    tempImage = cell.style.backgroundImage
+    underCell.style.backgroundColor = tempColor
+    underCell.style.backgroundImage = tempImage
+    underCell.style.backgroundPosition = 'center'
+    underCell.style.backgroundSize = 'cover'
+    cell.style.backgroundColor = 'lightblue'
+    cell.style.backgroundImage = ''
     checkFloating(underCell)
   }
 }

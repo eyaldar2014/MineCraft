@@ -10,15 +10,43 @@ body{
 }
 
 #landing{
-  background: grey;
+  background: url('images/bg.gif') no-repeat center center /cover;
   position: absolute;
-  display: block;
-
-  /* changed to work easily on game */
-  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 10;
   width: 100vw;
   height: 100vh;
 }
+
+#mainTitle{
+  background: url('images/a.png') no-repeat center center /cover;
+  width: 42vw;
+  height: 7vw;
+  margin-bottom: 30px
+}
+
+#newGame{
+  position: absolute;
+  background: blue;
+  z-index: 1000;
+  width: 80vw;
+  height: 80vh;
+
+}
+
+.btn{
+  width: 200px;
+  margin-bottom: 10px;
+  height: 40px;
+  font-weight: 600;
+  font-size: 1.2rem;
+  background: orange;
+  
+}
+
 
 #game{
   position: absolute;
