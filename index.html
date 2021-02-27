@@ -7,7 +7,9 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <link rel="stylesheet" media="screen and (min-width: 600px)" href="widescreen.css">
+
+  <title>minecraft</title>
 </head>
 
 <body>
@@ -15,24 +17,45 @@
 
   <div id="landing">
     <div id="mainTitle"></div>
-    <button class="btn">New Game</button>
+    <button class="btn" onclick="newGameMenu()">New Game</button>
     <button class="btn">Load</button>
-    <button class="btn">Instructions</button>
+    <button class="btn" onclick="instructionsMenu()">Instructions</button>
     <button class="btn">Credits</button>
     <button class="btn">Exit Game</button>
   </div>
 
-    <div id="NewGame">
-      <form action="">
+  <div id="newGame">
+    <form action="">
+      <div class="input">
         <label for="rows">rows</label>
-        <input type="number" id="rows" value="0">
+        <input type="number" id="rows" value="" class="inputRows">
+      </div>
+      <div class="input inputColumnsContainer">
         <label for="columns">columns</label>
-        <input type="number" id="columns" value="0">
-        <!-- <input type="number" id="trees"> -->
-      </form>
-      <button id="start" onclick="start()">start</button>
+        <input type="number" id="columns" value="" class="inputColumns">
+        <p>*minimum 10</p>
+      </div>
+      <!-- <input type="number" id="trees"> -->
+    </form>
+    <a href="#"><button id="start" class="btn" onclick="start()">Start</button></a>
+    <a href="index.html"><button id='cancelStart' class="btn" onclick="cancel()">Cancel</button></a>
+  </div>
+
+  <div id="instructions">
+    <h1>instructions</h1>
+    <div id="instructionsTextContainer">
+      <p>Welcome Mate ! <br>
+        you are about to enter the world of mincreft.
+        put attention for different tools, your holder and the storage. <br>
+        make sure you dig only when above is empty. <br>
+        don't forger gravity ! can you play ahead of it?
+        <br>
+        Good Luck !!!
+      </p>
     </div>
-  
+    <a href="index.html"><button id='cancelStart' class="btn" onclick="cancel()">Back</button></a>
+  </div>
+
 
   <div id="game">
     <div id="toolsAndStorage">
@@ -61,9 +84,21 @@
           <div id="rockCounter">0</div>
         </div>
       </div>
+
+
+      <div id="currentContainer">
+        <h1 class="currentTitle">Holder &nbsp; </h1>
+        <div id="currentIcon"></div>
+      </div>
+      <div id="currentContainer">
+        <a href="index.html"><button id='cancelGame' class="btn cancelGame" onclick="cancel()">Back</button></a>
+      </div>
     </div>
     <div id="matrix"></div>
   </div>
+  </div>
+
+
 
   <!-- </div> -->
 </body>

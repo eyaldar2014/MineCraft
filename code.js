@@ -1,14 +1,17 @@
 // console.log('a')
 let tempColor
 let tempImage
-let currentTool
+// let currentTool
 
+const newGame = document.querySelector('#newGame')
+const instructions = document.querySelector('#instructions')
 const matrix = document.querySelector('#matrix')
 const landing = document.querySelector('#landing')
 const rows = document.querySelector('#rows')
 const columns = document.querySelector('#columns')
 let cells
 let tools = document.querySelectorAll('.toolBox')
+let currentHolder = document.querySelector('#currentIcon')
 
 let woodCounter = document.querySelector('#woodCounter')
 let dirtCounter = document.querySelector('#dirtCounter')
@@ -23,9 +26,10 @@ let dirt = false
 
 let digPermission = false
 
-// console.log(storages)
+// console.log(currentHolder.style.background)
 
 function createMatrix(r, c) {
+
 
   // let w = window.innerWidth;
   let h = window.innerHeight;
@@ -102,7 +106,13 @@ function createMatrix(r, c) {
 
 
 function start() {
+  // console.log(columns.value)
+  if (columns.value < 10 || rows.value < 10) {
+    return
+  }
+
   landing.style.zIndex = '-100'
+  newGame.style.zIndex = '-100'
   let r = rows.value
   let c = columns.value
   createMatrix(r, c)
@@ -175,13 +185,17 @@ function cell(e) {
     let n = parseInt(dirtCounter.innerHTML) - 1
     dirtCounter.innerHTML = n.toString()
   }
-  if (cell.style.backgroundColor !== 'lightblue'){
-  checkFloating(cell)
+  if (cell.style.backgroundColor !== 'lightblue') {
+    checkFloating(cell)
   }
 }
 
 function tool(e) {
+  
   let tool = e.srcElement
+  let toolStyle = getComputedStyle(tool)
+  currentHolder.style.background = toolStyle.background
+
   // console.log(tool.id)
   if (tool.id === 'axeBox') {
     // tool.style.border = 'grey 5px solid'
@@ -213,6 +227,9 @@ function tool(e) {
 }
 function putBack(e) {
   let store = e.srcElement
+  let storeStyle = getComputedStyle(store)
+  currentHolder.style.background = storeStyle.background
+  
   if (store.id === 'woodIcon' && parseInt(woodCounter.innerHTML) > 0) {
     // store.style.border = 'grey 5px solid'
     wood = true
@@ -250,13 +267,13 @@ function checkDirt(cell) {
   let upperRow = (parseInt(row.id) - 1).toString()
 
   let upperCell
-  cells.forEach(element=>{
-    if (element.parentElement.id === upperRow && element.id === cell.id){
+  cells.forEach(element => {
+    if (element.parentElement.id === upperRow && element.id === cell.id) {
       upperCell = element
     }
   })
 
-  if (upperCell.style.backgroundColor === 'lightblue'){
+  if (upperCell.style.backgroundColor === 'lightblue') {
     digPermission = true
   }
 }
@@ -268,13 +285,13 @@ function checkFloating(cell) {
   let underRow = (parseInt(row.id) + 1).toString()
 
   let underCell
-  cells.forEach(element=>{
-    if (element.parentElement.id === underRow && element.id === cell.id){
+  cells.forEach(element => {
+    if (element.parentElement.id === underRow && element.id === cell.id) {
       underCell = element
     }
   })
 
-  if (underCell.style.backgroundColor === 'lightblue'){
+  if (underCell.style.backgroundColor === 'lightblue') {
     tempColor = cell.style.backgroundColor
     tempImage = cell.style.backgroundImage
     underCell.style.backgroundColor = tempColor
@@ -285,4 +302,11 @@ function checkFloating(cell) {
     cell.style.backgroundImage = ''
     checkFloating(underCell)
   }
+}
+
+function newGameMenu() {
+  newGame.style.zIndex = '100'
+}
+function instructionsMenu() {
+  instructions.style.zIndex = '100'
 }
