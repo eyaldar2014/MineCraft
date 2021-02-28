@@ -8,7 +8,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <!-- <link rel="stylesheet" media="screen and (min-width: 600px)" href="widescreen.css"> -->
-  <link rel="stylesheet" media="screen and (max-height: 500px)" href="landscape.css">
+  <!-- <link rel="stylesheet" media="screen and (max-height: 500px)" href="landscape.css"> -->
 
   <title>minecraft</title>
 </head>
@@ -60,6 +60,40 @@
     <a href="index.html"><button id='cancelStart' class="btn">Back</button></a>
   </div>
 
+  <div id="markets">
+    <h1>Market Place</h1>
+    <div id="marketContainer">
+      <p>market market market market market market market market market market market market market market market market
+        market</p>
+    </div>
+    <div id="dealContainer">
+      <div id="woodDeal" class="brickContainer">
+        <div id="woodIconDeal" class="dealIcon"></div>
+        <h3>&nbsp; / &nbsp;</h3>
+        <div id="woodCounterDeal" class="dealCounter">0</div>
+      </div>
+      <div id="dirtDeal" class="brickContainer">
+        <div id="dirtIconDeal" class="dealIcon"></div>
+        <h3>&nbsp; / &nbsp;</h3>
+        <div id="dirtCounterDeal" class="dealCounter">0</div>
+      </div>
+      <div id="rockDeal" class="brickContainer">
+        <div id="rockIconDeal" class="dealIcon"></div>
+        <h3>&nbsp; / &nbsp;</h3>
+        <div id="rockCounterDeal" class="dealCounter">0</div>
+      </div>
+      <div id="bushDeal" class="brickContainer">
+        <div id="bushIconDeal" class="dealIcon"></div>
+        <h3>&nbsp; / &nbsp;</h3>
+        <div id="bushCounterDeal" class="dealCounter">0</div>
+      </div>
+    </div>
+    <div id="currentResource">
+      <h1 class="currentTitle">Holder &nbsp; </h1>
+      <div id="currentResourceIcon"></div>
+    </div>
+    <button id='cancelStart' class="btn" onclick="endMarket()">Back</button>
+  </div>
 
   <div id="game">
     <div id="toolsAndStorage">
@@ -96,10 +130,11 @@
 
 
       <div id="currentContainer">
-          <h1 class="currentTitle">Holder &nbsp; </h1>
+        <h1 class="currentTitle">Holder &nbsp; </h1>
         <div id="currentIcon"></div>
       </div>
       <div id="currentContainer">
+        <button id='Market-Place' class="btn" onclick="market()">Market-Place</button>
         <a href="index.html"><button id='cancelGame' class="btn cancelGame">Back</button></a>
       </div>
     </div>

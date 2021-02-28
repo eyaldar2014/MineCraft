@@ -6,6 +6,7 @@ let rowNumbers
 let columnNumbers
 const newGame = document.querySelector('#newGame')
 const instructions = document.querySelector('#instructions')
+const markets = document.querySelector('#markets')
 const matrix = document.querySelector('#matrix')
 const landing = document.querySelector('#landing')
 const rows = document.querySelector('#rows')
@@ -18,6 +19,13 @@ let woodCounter = document.querySelector('#woodCounter')
 let dirtCounter = document.querySelector('#dirtCounter')
 let rockCounter = document.querySelector('#rockCounter')
 let storages = document.querySelectorAll('.brickIcon')
+let woodCounterDeal = document.querySelector('#woodCounterDeal')
+let rockCounterDeal = document.querySelector('#rockCounterDeal')
+let dirtCounterDeal = document.querySelector('#dirtCounterDeal')
+let bushCounterDeal = document.querySelector('#bushCounterDeal')
+let dealIcon = document.querySelectorAll('.dealIcon')
+
+
 
 let booleanParameters = {}
 booleanParameters.axe = false
@@ -300,7 +308,6 @@ function createElements() {
     }
   })
 
-  
   let secondCloudsRow = parseInt(mainRow) / 2
   secondCloudsRow = Math.floor(secondCloudsRow)
   secondCloudsRow = secondCloudsRow + 2
@@ -325,7 +332,6 @@ function createElements() {
       }
     }
   })
-
 
   mainRow = document.getElementById(mainRow.toString())
   mainRow = mainRow.childNodes
@@ -383,4 +389,69 @@ function createElements() {
       }
     }
   })
+}
+
+function market() {
+  markets.style.zIndex = '100'
+  
+  dealIcon.forEach(element => {
+    element.addEventListener('click', trade, true)
+  });
+
+  woodCounterDeal.innerHTML = woodCounter.innerHTML
+  rockCounterDeal.innerHTML = rockCounter.innerHTML
+  dirtCounterDeal.innerHTML = dirtCounter.innerHTML
+  bushCounterDeal.innerHTML = bushCounter.innerHTML
+
+}
+
+function endMarket() {
+  markets.style.zIndex = '-100'
+}
+
+
+let resourceParameters = {}
+resourceParameters.wood = false
+resourceParameters.rock = false
+resourceParameters.dirt = false
+resourceParameters.bush = false
+
+function trade(e) {
+  let resource = e.srcElement 
+  let resourceStyle = getComputedStyle(resource)
+  currentResourceIcon.style.background = resourceStyle.background
+
+  if (resource.id === 'woodIconDeal' && parseInt(woodCounterDeal.innerHTML) > 1){
+
+  }
+}
+// if (store.id === 'woodIcon' && parseInt(woodCounter.innerHTML) > 0) {
+
+// function putBack(e) {
+//   let store = e.srcElement
+//   let storeStyle = getComputedStyle(store)
+//   currentHolder.style.background = storeStyle.background
+
+//   if (store.id === 'woodIcon' && parseInt(woodCounter.innerHTML) > 0) {
+//     falseCheck()
+//     booleanParameters.wood = true
+//   }
+//   if (store.id === 'rockIcon' && parseInt(rockCounter.innerHTML) > 0) {
+//     falseCheck()
+//     booleanParameters.rock = true
+//   }
+//   if (store.id === 'dirtIcon' && parseInt(dirtCounter.innerHTML) > 0) {
+//     falseCheck()
+//     booleanParameters.dirt = true
+//   }
+//   if (store.id === 'bushIcon' && parseInt(bushCounter.innerHTML) > 0) {
+//     falseCheck()
+//     booleanParameters.bush = true
+//   }
+// }
+
+function resourceCheck() {
+  for (let key in resourceParameters) {
+    resourceParameters[key] = false
+  }
 }
