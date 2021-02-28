@@ -2,7 +2,6 @@
 let cloudsRow
 let mainRow
 let cells = []
-
 let payer
 let payer2
 
@@ -29,7 +28,11 @@ let dirtCounterDeal = document.querySelector('#dirtCounterDeal')
 let bushCounterDeal = document.querySelector('#bushCounterDeal')
 let dealIcon = document.querySelectorAll('.dealIcon')
 
-
+let resourceParameters = {}
+resourceParameters.wood = false
+resourceParameters.rock = false
+resourceParameters.dirt = false
+resourceParameters.bush = false
 
 let booleanParameters = {}
 booleanParameters.axe = false
@@ -43,6 +46,7 @@ booleanParameters.bush = false
 
 let digPermission = false
 let trader = false
+
 
 
 function start() {
@@ -395,34 +399,26 @@ function createElements() {
   })
 }
 
-
-
-
-
 function market() {
   markets.style.zIndex = '100'
-
   dealIcon.forEach(element => {
     element.addEventListener('click', tradeStart, true)
   });
-
   woodCounterDeal.innerHTML = woodCounter.innerHTML
   rockCounterDeal.innerHTML = rockCounter.innerHTML
   dirtCounterDeal.innerHTML = dirtCounter.innerHTML
   bushCounterDeal.innerHTML = bushCounter.innerHTML
-
 }
 
 function endMarket() {
   markets.style.zIndex = '-100'
 }
 
-
-let resourceParameters = {}
-resourceParameters.wood = false
-resourceParameters.rock = false
-resourceParameters.dirt = false
-resourceParameters.bush = false
+function resourceCheck() {
+  for (let key in resourceParameters) {
+    resourceParameters[key] = false
+  }
+}
 
 function tradeStart(e) {
   let resource = e.srcElement
@@ -485,18 +481,7 @@ function tradeStart(e) {
       });
     });
   }
-
-  console.log(trader)
 }
-
-function resourceCheck() {
-  for (let key in resourceParameters) {
-    resourceParameters[key] = false
-  }
-}
-
-
-
 function tradeContinue(e) {
   let reciever = e.srcElement
 
