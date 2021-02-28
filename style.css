@@ -1,3 +1,23 @@
+@media screen and (min-width: 600px) {
+  #newGame{
+    left: calc(50% - 300px);
+    width: 600px;
+  }
+  
+  #instructions{
+    left: calc(50% - 300px);
+    width: 600px;  
+  }
+  .cancelGame{
+    width: 200px;
+  }
+}
+
+
+
+
+
+
 .wood{
   background-color: green;
   background-image: url('/images/blocks/wood.png') ;
@@ -30,6 +50,9 @@
   background-color: lightblue;
 }
 
+.cloud{
+  background-color: white;
+}
 
 *{
   box-sizing: border-box;
@@ -83,6 +106,16 @@ body{
   z-index: 10;
   width: 100vw;
   height: 100vh;
+  opacity: 0;
+  animation-name: fadeIn;
+  animation-duration: 7s;
+  animation-fill-mode: forwards;
+
+}
+
+@keyframes fadeIn {
+  from {opacity: 0;}
+  to {opacity: 1;}
 }
 
 #mainTitle{
@@ -136,11 +169,11 @@ body{
 #instructions{
   position: absolute;
   left: calc(50% - 180px);
-  top: 40vh;
+  top: 10vh;
   background: url('/images/instructionsBg.png') no-repeat center center / cover;
   opacity: 0.9;
   width: 360px;
-  height: 50vh;
+  height: 80vh;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -192,6 +225,8 @@ body{
   background: url('/images/sidebarBg.png') no-repeat center center / cover;
   padding: 20px;
   overflow: scroll;
+  overflow-x: scroll;
+  min-width: 100px;
 }
 
 #toolsContainer{
@@ -230,6 +265,7 @@ body{
   margin-top: 20px;
   display: flex;
   align-items: center;  
+  min-width: 180px;
 }
 
 #currentIcon{
@@ -239,7 +275,7 @@ body{
 }
 
 .cancelGame{
-  width: 130px;
+  width: 150px;
   margin-top: 40px;
   background: turquoise;
 }

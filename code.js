@@ -1,12 +1,9 @@
-
-
-
-
-// let tempColor
-// let tempImage
+let cloudsRow
 let mainRow
 let cells = []
 
+let rowNumbers
+let columnNumbers
 const newGame = document.querySelector('#newGame')
 const instructions = document.querySelector('#instructions')
 const matrix = document.querySelector('#matrix')
@@ -22,16 +19,7 @@ let dirtCounter = document.querySelector('#dirtCounter')
 let rockCounter = document.querySelector('#rockCounter')
 let storages = document.querySelectorAll('.brickIcon')
 
-let booleanParameters = {
-
-}
-// let axe = false
-// let pickAxe = false
-// let shovel = false
-// let wood = false
-// let rock = false
-// let dirt = false
-// let bush = false
+let booleanParameters = {}
 booleanParameters.axe = false
 booleanParameters.pickAxe = false
 booleanParameters.shovel = false
@@ -39,15 +27,15 @@ booleanParameters.wood = false
 booleanParameters.rock = false
 booleanParameters.dirt = false
 booleanParameters.bush = false
-console.log(booleanParameters)
+// console.log(booleanParameters)
 
-let digPermission = true
+let digPermission = false
 
 
 
 function start() {
   // console.log(columns.value)
-  if (columns.value < 10 || rows.value < 10) {
+  if (columns.value < 15 || rows.value < 15) {
     return
   }
 
@@ -60,7 +48,7 @@ function start() {
 }
 
 function gameOn() {
-  console.log(cells)
+  // console.log(cells)
   cells.forEach(element => {
     element.addEventListener('click', cell, true)
   });
@@ -82,6 +70,9 @@ function instructionsMenu() {
 }
 
 function createMatrix(r, c) {
+
+  rowNumbers = r
+  columnNumbers = c
 
   let number = parseInt(r)
 
@@ -110,36 +101,22 @@ function createMatrix(r, c) {
       cells.push(cell)
       row.appendChild(cell)
 
-      let mainRow = Math.floor(0.65 * r) + 1
+      let borderRow = Math.floor(0.65 * r) + 1
 
       if (rn / r > 0.65) {
         cell.classList.add('dirt')
-        // cell.style.backgroundColor = 'brown' // dirt
-        // cell.style.backgroundImage = 'url(/images/blocks/soil.png)'
-        // cell.style.backgroundPosition = 'center'
-        // cell.style.backgroundSize = 'cover'
       }
       else {
         cell.classList.add('sky')
-        // cell.style.backgroundColor = 'lightblue' // sky
       }
-      // bush/tree-leaves.brick : 
-      if (mainRow - 1 === rn) {
+      if (borderRow - 1 === rn) {
         cell.classList.remove('sky')
         cell.classList.add('bush')
-        // cell.style.backgroundColor = 'yellow'
-        // cell.style.backgroundImage = 'url(/images/blocks/tree-leaves.png)'
-        // cell.style.backgroundPosition = 'center'
-        // cell.style.backgroundSize = 'cover'
+        mainRow = borderRow - 1
       }
-      if (mainRow - 2 === rn) {
+      if (borderRow - 2 === rn) {
         cell.classList.remove('sky')
         cell.classList.add('bush')
-        // cell.style.backgroundColor = 'yellow'
-        // cell.style.backgroundImage = 'url(/images/blocks/tree-leaves.png)'
-        // cell.style.backgroundPosition = 'center'
-        // cell.style.backgroundSize = 'cover'
-        // mainRow = cell.parentElement
       }
     }
     number = parseInt(number) + parseInt(c)
@@ -148,7 +125,6 @@ function createMatrix(r, c) {
   // console.log(cells)
   createElements()
 }
-
 
 function tool(e) {
 
@@ -169,7 +145,6 @@ function tool(e) {
     booleanParameters.shovel = true
   }
 }
-
 
 function putBack(e) {
   let store = e.srcElement
@@ -200,16 +175,10 @@ function falseCheck() {
   }
 }
 
-
-
 function cell(e) {
-  // console.log('here')
-  // console.log(booleanParameters)
 
   let cell = e.srcElement
 
-  // console.log(cell)
-  // console.log(cell.className)
   if (booleanParameters.axe === true && cell.className === 'wood') {
     cell.classList.remove('wood')
     cell.classList.add('sky')
@@ -217,7 +186,7 @@ function cell(e) {
     woodCounter.innerHTML = n.toString()
   }
   else if (booleanParameters.axe === true && cell.className === 'bush') {
-    console.log(cell)
+    // console.log(cell)
     cell.classList.remove('bush')
     cell.classList.add('sky')
     let n = parseInt(bushCounter.innerHTML) + 1
@@ -272,53 +241,146 @@ function cell(e) {
   }
 }
 
+function checkDirt(cell) {
+  // console.log(cell)
+
+  let oneCellUp = parseInt(cell.id) - columnNumbers
+
+  oneCellUp = oneCellUp.toString()
+  oneCellUp = document.getElementById(oneCellUp)
+
+  if (oneCellUp.className === 'sky') {
+    digPermission = true
+  }
+}
+
+function checkFloating(cell) {
+  // console.log(cell)
+
+  let oneCellUnder = parseInt(cell.id) + parseInt(columnNumbers)
+
+  oneCellUnder = oneCellUnder.toString()
+  oneCellUnder = document.getElementById(oneCellUnder)
+  // console.log(oneCellUnder)
+
+  if (oneCellUnder.className === 'sky' || oneCellUnder.className === 'cloud') {
+    oneCellUnder.className = cell.className
+    cell.className = 'sky'
+    checkFloating(oneCellUnder)
+  }
+}
+
 
 
 function createElements() {
 
-}
+  cloudsRow = parseInt(mainRow) / 2
+  cloudsRow = Math.floor(cloudsRow)
+  cloudsRow = document.getElementById(cloudsRow.toString())
+  // console.log(cloudsRow)
+  cloudsRow = cloudsRow.childNodes
+
+  cloudsRow.forEach(x => {
+    if (parseInt(x.id) % 11 === 0) {
+      x.className = 'cloud'
+
+      let number = 0
+      number = parseInt(columnNumbers)
+      for (let i = 0; i < rowNumbers * 0.1; i++) {
+        let temp = (parseInt(x.id) - number).toString()
+        document.getElementById(temp).className = 'cloud'
+        temp = (parseInt(x.id) - number - 1).toString()
+        document.getElementById(temp).className = 'cloud'
+        temp = (parseInt(x.id) - number - 2).toString()
+        document.getElementById(temp).className = 'cloud'
+        temp = (parseInt(x.id) - number - 3).toString()
+        document.getElementById(temp).className = 'cloud'
+        number = number + parseInt(columnNumbers)
+      }
+    }
+  })
+
+  
+  let secondCloudsRow = parseInt(mainRow) / 2
+  secondCloudsRow = Math.floor(secondCloudsRow)
+  secondCloudsRow = secondCloudsRow + 2
+  secondCloudsRow = document.getElementById(secondCloudsRow.toString())
+  secondCloudsRow = secondCloudsRow.childNodes
+
+  secondCloudsRow.forEach(x => {
+    if (parseInt(x.id) % 11 === 1) {
+
+      let number = 0
+      number = parseInt(columnNumbers)
+      for (let i = 0; i < rowNumbers * 0.1; i++) {
+        let temp = (parseInt(x.id) - number).toString()
+        document.getElementById(temp).className = 'cloud'
+        temp = (parseInt(x.id) - number - 1).toString()
+        document.getElementById(temp).className = 'cloud'
+        temp = (parseInt(x.id) - number - 2).toString()
+        document.getElementById(temp).className = 'cloud'
+        temp = (parseInt(x.id) - number - 3).toString()
+        document.getElementById(temp).className = 'cloud'
+        number = number + parseInt(columnNumbers)
+      }
+    }
+  })
 
 
-function checkDirt(cell) {
-  // console.log(cell)
+  mainRow = document.getElementById(mainRow.toString())
+  mainRow = mainRow.childNodes
+  mainRow.forEach(x => {
+    if (parseInt(x.id) % 10 === 0 && parseInt(x.id) % 3 !== 0) {
+      x.className = 'wood'
 
-  // let row = cell.parentElement
-  // let upperRow = (parseInt(row.id) - 1).toString()
+      let number = 0
+      number = parseInt(columnNumbers)
+      for (let i = 0; i < rowNumbers * 0.3; i++) {
+        let temp = (parseInt(x.id) - number).toString()
+        document.getElementById(temp).className = 'wood'
+        number = number + parseInt(columnNumbers)
+      }
+      for (let i = 0; i < rowNumbers * 0.15; i++) {
+        let temp = (parseInt(x.id) - number).toString()
+        document.getElementById(temp).className = 'bush'
+        temp = (parseInt(x.id) - number + 2).toString()
+        document.getElementById(temp).className = 'bush'
+        temp = (parseInt(x.id) - number - 1).toString()
+        document.getElementById(temp).className = 'bush'
+        temp = (parseInt(x.id) - number - 2).toString()
+        document.getElementById(temp).className = 'bush'
 
-  // let upperCell
-  // cells.forEach(element => {
-  //   if (element.parentElement.id === upperRow && element.id === cell.id) {
-  //     upperCell = element
-  //   }
-  // })
+        number = number + parseInt(columnNumbers)
+      }
 
-  // if (upperCell.style.backgroundColor === 'lightblue') {
-  //   digPermission = true
-  // }
-}
+      number = 0
+      for (let i = 0; i < rowNumbers * 0.35 + 1; i++) {
+        let temp = (parseInt(x.id) - number + 1).toString()
+        document.getElementById(temp).className = 'wood'
+        number = number + parseInt(columnNumbers)
+      }
+      for (let i = 0; i < rowNumbers * 0.11; i++) {
+        let temp = (parseInt(x.id) - number + 1).toString()
+        document.getElementById(temp).className = 'bush'
+        number = number + parseInt(columnNumbers)
+      }
+    }
+    if (parseInt(x.id) % 19 === 0) {
 
-function checkFloating(cell) { // digpermission
-  // console.log(cell)
+      let number = 0
+      number = parseInt(columnNumbers)
+      for (let i = 0; i < rowNumbers * 0.1; i++) {
+        let temp = (parseInt(x.id) - number).toString()
+        document.getElementById(temp).className = 'rock'
+        temp = (parseInt(x.id) - number + 1).toString()
+        document.getElementById(temp).className = 'rock'
+        temp = (parseInt(x.id) - number + 2).toString()
+        document.getElementById(temp).className = 'rock'
+        temp = (parseInt(x.id) - number + 3).toString()
+        document.getElementById(temp).className = 'rock'
 
-  // let row = cell.parentElement
-  // let underRow = (parseInt(row.id) + 1).toString()
-
-  // let underCell
-  // cells.forEach(element => {
-  //   if (element.parentElement.id === underRow && element.id === cell.id) {
-  //     underCell = element
-  //   }
-  // })
-
-  // if (underCell.style.backgroundColor === 'lightblue') {
-  //   tempColor = cell.style.backgroundColor
-  //   tempImage = cell.style.backgroundImage
-  //   underCell.style.backgroundColor = tempColor
-  //   underCell.style.backgroundImage = tempImage
-  //   underCell.style.backgroundPosition = 'center'
-  //   underCell.style.backgroundSize = 'cover'
-  //   cell.style.backgroundColor = 'lightblue'
-  //   cell.style.backgroundImage = ''
-  //   checkFloating(underCell)
-  // }
+        number = number + parseInt(columnNumbers)
+      }
+    }
+  })
 }
