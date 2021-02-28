@@ -1,6 +1,10 @@
+
 let cloudsRow
 let mainRow
 let cells = []
+
+let payer
+let payer2
 
 let rowNumbers
 let columnNumbers
@@ -38,7 +42,7 @@ booleanParameters.bush = false
 // console.log(booleanParameters)
 
 let digPermission = false
-
+let trader = false
 
 
 function start() {
@@ -391,11 +395,15 @@ function createElements() {
   })
 }
 
+
+
+
+
 function market() {
   markets.style.zIndex = '100'
-  
+
   dealIcon.forEach(element => {
-    element.addEventListener('click', trade, true)
+    element.addEventListener('click', tradeStart, true)
   });
 
   woodCounterDeal.innerHTML = woodCounter.innerHTML
@@ -416,42 +424,114 @@ resourceParameters.rock = false
 resourceParameters.dirt = false
 resourceParameters.bush = false
 
-function trade(e) {
-  let resource = e.srcElement 
+function tradeStart(e) {
+  let resource = e.srcElement
   let resourceStyle = getComputedStyle(resource)
   currentResourceIcon.style.background = resourceStyle.background
 
-  if (resource.id === 'woodIconDeal' && parseInt(woodCounterDeal.innerHTML) > 1){
+  if (resource.id === 'woodIconDeal' && parseInt(woodCounterDeal.innerHTML) > 0) {
+    payer = woodCounterDeal
+    payer2 = woodCounter
 
+    resourceCheck()
+    trader = true
+    resourceParameters.wood = true
+    dealIcon.forEach(element => {
+      element.removeEventListener('click', tradeStart, true);
+    });
+    dealIcon.forEach(element => {
+      element.addEventListener('click', tradeContinue, true)
+    });
   }
+  else if (resource.id === 'rockIconDeal' && parseInt(rockCounterDeal.innerHTML) > 0) {
+    payer = rockCounterDeal
+    payer2 = rockCounter
+
+    resourceCheck()
+    trader = true
+    resourceParameters.rock = true
+    dealIcon.forEach(element => {
+      element.removeEventListener('click', tradeStart, true);
+    });
+    dealIcon.forEach(element => {
+      element.addEventListener('click', tradeContinue, true)
+    });
+  }
+  else if (resource.id === 'dirtIconDeal' && parseInt(dirtCounterDeal.innerHTML) > 0) {
+    payer = dirtCounterDeal
+    payer2 = dirtCounter
+
+    resourceCheck()
+    trader = true
+    resourceParameters.dirt = true
+    dealIcon.forEach(element => {
+      element.removeEventListener('click', tradeStart, true);
+      dealIcon.forEach(element => {
+        element.addEventListener('click', tradeContinue, true)
+      });
+    });
+  }
+  else if (resource.id === 'bushIconDeal' && parseInt(bushCounterDeal.innerHTML) > 0) {
+    payer = bushCounterDeal
+    payer2 = bushCounter
+
+    resourceCheck()
+    trader = true
+    resourceParameters.bush = true
+    dealIcon.forEach(element => {
+      element.removeEventListener('click', tradeStart, true);
+      dealIcon.forEach(element => {
+        element.addEventListener('click', tradeContinue, true)
+      });
+    });
+  }
+
+  console.log(trader)
 }
-// if (store.id === 'woodIcon' && parseInt(woodCounter.innerHTML) > 0) {
-
-// function putBack(e) {
-//   let store = e.srcElement
-//   let storeStyle = getComputedStyle(store)
-//   currentHolder.style.background = storeStyle.background
-
-//   if (store.id === 'woodIcon' && parseInt(woodCounter.innerHTML) > 0) {
-//     falseCheck()
-//     booleanParameters.wood = true
-//   }
-//   if (store.id === 'rockIcon' && parseInt(rockCounter.innerHTML) > 0) {
-//     falseCheck()
-//     booleanParameters.rock = true
-//   }
-//   if (store.id === 'dirtIcon' && parseInt(dirtCounter.innerHTML) > 0) {
-//     falseCheck()
-//     booleanParameters.dirt = true
-//   }
-//   if (store.id === 'bushIcon' && parseInt(bushCounter.innerHTML) > 0) {
-//     falseCheck()
-//     booleanParameters.bush = true
-//   }
-// }
 
 function resourceCheck() {
   for (let key in resourceParameters) {
     resourceParameters[key] = false
   }
+}
+
+
+
+function tradeContinue(e) {
+  let reciever = e.srcElement
+
+  console.log(reciever.id)
+  if (trader === true && reciever.id === 'woodIconDeal') {
+    let n = parseInt(woodCounterDeal.innerHTML) + 1
+    woodCounterDeal.innerHTML = n.toString()
+    woodCounter.innerHTML = n.toString()
+    payment()
+  }
+  if (trader === true && reciever.id === 'rockIconDeal') {
+    let n = parseInt(rockCounterDeal.innerHTML) + 1
+    rockCounterDeal.innerHTML = n.toString()
+    rockCounter.innerHTML = n.toString()
+    payment()
+  }
+  if (trader === true && reciever.id === 'bushIconDeal') {
+    let n = parseInt(bushCounterDeal.innerHTML) + 1
+    bushCounterDeal.innerHTML = n.toString()
+    bushCounter.innerHTML = n.toString()
+    payment()
+  }
+  if (trader === true && reciever.id === 'dirtIconDeal') {
+    let n = parseInt(dirtCounterDeal.innerHTML) + 1
+    dirtCounterDeal.innerHTML = n.toString()
+    dirtCounter.innerHTML = n.toString()
+    payment()
+  }
+}
+
+function payment() {
+  payer.innerHTML = (parseInt(payer.innerHTML) - 1).toString()
+  payer2.innerHTML = payer.innerHTML
+  trader = false
+  dealIcon.forEach(element => {
+    element.addEventListener('click', tradeStart, true)
+  });
 }
